@@ -1,0 +1,123 @@
+package sistemaVentasCocina;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class FrmPrincipal extends JFrame {
+
+	private JPanel contentPane;
+	private JMenuBar menuBar;
+	private JMenu mnArchivo;
+	private JMenu mnMantenimiento;
+	private JMenu mnVentas;
+	private JMenu mnConfiguracion;
+	private JMenu mnAyuda;
+	private JMenuItem mntmSalir;
+	private JMenuItem mntmConsultarCocina;
+	private JMenuItem mntmModificarCocina;
+	private JMenuItem mntmListarCocina;
+	private JMenuItem mntmVender;
+	private JMenuItem mntmGenerarReportes;
+	private JMenuItem mntmConfigurarDescuentos;
+	private JMenuItem mntmConfigurarObsequios;
+	private JMenuItem mntmConfigurarCantidad;
+	private JMenuItem mntmConfigurarCuota;
+	private JMenuItem mntmAcercaTienda;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					FrmPrincipal frame = new FrmPrincipal();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public FrmPrincipal() {
+		setTitle("Tienda 1.0");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		
+		menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		mnArchivo = new JMenu("Archivo");
+		menuBar.add(mnArchivo);
+		
+		mntmSalir = new JMenuItem("Salir");
+		mntmSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedMntmSalir(e);
+			}
+		});
+		mnArchivo.add(mntmSalir);
+		
+		mnMantenimiento = new JMenu("Mantenimiento");
+		menuBar.add(mnMantenimiento);
+		
+		mntmConsultarCocina = new JMenuItem("Consultar cocina");
+		mnMantenimiento.add(mntmConsultarCocina);
+		
+		mntmModificarCocina = new JMenuItem("Modificar cocina");
+		mnMantenimiento.add(mntmModificarCocina);
+		
+		mntmListarCocina = new JMenuItem("Listar cocinas");
+		mnMantenimiento.add(mntmListarCocina);
+		
+		mnVentas = new JMenu("Ventas");
+		menuBar.add(mnVentas);
+		
+		mntmVender = new JMenuItem("Vender");
+		mnVentas.add(mntmVender);
+		
+		mntmGenerarReportes = new JMenuItem("Generar reportes");
+		mnVentas.add(mntmGenerarReportes);
+		
+		mnConfiguracion = new JMenu("Configuración");
+		menuBar.add(mnConfiguracion);
+		
+		mntmConfigurarDescuentos = new JMenuItem("Configurar descuentos");
+		mnConfiguracion.add(mntmConfigurarDescuentos);
+		
+		mntmConfigurarObsequios = new JMenuItem("Configurar obsequios");
+		mnConfiguracion.add(mntmConfigurarObsequios);
+		
+		mntmConfigurarCantidad = new JMenuItem("Configurar cantidad óptima");
+		mnConfiguracion.add(mntmConfigurarCantidad);
+		
+		mntmConfigurarCuota = new JMenuItem("Configurar cuota diaria");
+		mnConfiguracion.add(mntmConfigurarCuota);
+		
+		mnAyuda = new JMenu("Ayuda");
+		menuBar.add(mnAyuda);
+		
+		mntmAcercaTienda = new JMenuItem("Acerca de tienda");
+		mnAyuda.add(mntmAcercaTienda);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+	}
+	protected void actionPerformedMntmSalir(ActionEvent e) {
+		System.exit(0);
+	}
+}

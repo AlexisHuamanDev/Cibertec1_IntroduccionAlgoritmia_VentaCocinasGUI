@@ -1,0 +1,260 @@
+package sistemaVentasCocina;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.DropMode;
+
+public class DlgVender extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JTextField txtPrecio;
+	private JTextField txtCantidad;
+	private JComboBox<?> cboModelo;
+	private JTextArea txtS;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			DlgVender dialog = new DlgVender();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgVender() {
+		setBounds(100, 100, 450, 310);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		{
+			JLabel lblModelo = new JLabel("Modelo");
+			lblModelo.setBounds(10, 11, 62, 14);
+			contentPanel.add(lblModelo);
+		}
+		{
+			//JComboBox cboModelo = new JComboBox();
+			cboModelo = new JComboBox();
+			cboModelo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionPerformedCboModelo(e);
+				}
+			});
+			/*
+			cboModelo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionPerformedCboModelo(e);
+				}
+			});
+			*/
+			cboModelo.setModel(new DefaultComboBoxModel(new String[] {"Mabe EMP6120PG0", "Indurama Parma", "Sole COSOL027", "Coldex CX602", "Reco Dakota"}));
+			cboModelo.setBounds(82, 7, 142, 22);
+			contentPanel.add(cboModelo);
+		}
+		{
+			JLabel lblPrecio = new JLabel("Precio (S/.)");
+			lblPrecio.setBounds(10, 43, 62, 14);
+			contentPanel.add(lblPrecio);
+		}
+		{
+			txtPrecio = new JTextField();
+			txtPrecio.setEditable(false);
+			txtPrecio.setBounds(82, 40, 142, 20);
+			contentPanel.add(txtPrecio);
+			txtPrecio.setColumns(10);
+		}
+		{
+			JLabel lblCantidad = new JLabel("Cantidad");
+			lblCantidad.setBounds(10, 74, 62, 14);
+			contentPanel.add(lblCantidad);
+		}
+		{
+			txtCantidad = new JTextField();
+			txtCantidad.setBounds(82, 71, 142, 20);
+			contentPanel.add(txtCantidad);
+			txtCantidad.setColumns(10);
+		}
+		{
+			txtS = new JTextArea();
+			txtS.setBounds(10, 99, 414, 151);
+			contentPanel.add(txtS);
+		}
+		{
+			JButton btnVender = new JButton("Vender");
+			btnVender.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionPerformedBtnVender(e);
+				}
+			});
+			btnVender.setBounds(335, 7, 89, 23);
+			contentPanel.add(btnVender);
+		}
+		{
+			JButton btnCerrar = new JButton("Cerrar");
+			btnCerrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionPerformedBtnCerrar(e);
+				}
+			});
+			btnCerrar.setBounds(335, 39, 89, 23);
+			contentPanel.add(btnCerrar);
+		}
+		cargarDatos();
+	}
+
+	private void cargarDatos() {
+		int modelo = getModelo();
+		double precio = getPrecio(modelo);
+		txtPrecio.setText(precio+"");
+	}
+
+	/*
+	protected void actionPerformedCboModelo(ActionEvent e) {
+		//Declaración de variables
+		int modelo;
+		//Entrada de datos
+		modelo = getModelo();
+		//Proceso de cálculo -- no hay
+		//Salida de resultados
+		//mostrarResultado(modelo);
+		//
+		
+	}
+	*/
+	
+	protected void actionPerformedBtnVender(ActionEvent e) {
+		//Declaración de variables
+			int modelo,cant,opcion;
+			double precio,impCompra,impDscto,impPagar;
+			String obs;
+		//Entrada de datos
+			modelo = getModelo();
+			cant = getCantidad();
+			precio = getPrecio(modelo);
+		//Proceso de cálculo 
+			impCompra = calcIMporteCompra(modelo,cant);
+			impDscto = calcImporteDscto(cant, impCompra);
+			impPagar = calImportePagar(impCompra, impDscto);
+			obs = calcObsequio(cant);
+		//Salida de resultados
+			mostrarResultado(precio, cant, impCompra, impDscto, impPagar, obs);
+		//Ventana de confirmación
+			 opcion = JOptionPane.showConfirmDialog(this, "Seguro de modificar", "Sistema", JOptionPane.YES_NO_OPTION);
+		//Cerrar ventana
+			this.dispose();
+	}
+
+	private void mostrarResultadoCbo() {
+		int modelo = getModelo();
+		txtPrecio.setText(getPrecio(modelo)+"");
+
+	}
+
+	private void mostrarResultado(double precio, int cant, double impCompra, double impDscto, double impPagar, String obs) {
+		txtS.setText("BOLETA DE VENTA\n\n");
+		
+		imprimir("Modelo	 	:  "  +  cboModelo.getSelectedItem());
+		imprimir("Precio	 	:  S/."  +  precio);
+		imprimir("Cantidad	 	:  "   +  cant);
+		imprimir("Importe compra     	: S/. "  +  Adicionales.df.format(impCompra));
+		imprimir("Importe descuento  	: S/."  +  Adicionales.df.format(impDscto));
+		imprimir("Importe pagar      	: S/."  +  Adicionales.df.format(impPagar));
+		imprimir("Obsequio	 	:   "  + obs);	 	
+		
+	}
+
+	private void imprimir(String cad) {
+		txtS.append(cad + "\n");
+	}
+
+	private String calcObsequio(int cant) {
+		if(cant >= 1 && cant < 2)
+			return  "Plancha";
+		else if(cant >= 2 && cant < 5 )
+			return  "Licuadora";
+		else
+			return "Olla arrocera";
+	}
+	
+	private double calImportePagar(double impCompra, double impDscto) {
+		return impCompra - impDscto;
+	}
+
+	private double calcImporteDscto(int cant, double impCompra) {
+		if (cant >= 1 && cant <= 5) 
+			return impCompra * 0.05;
+		else if (cant >= 6 && cant <= 10)
+			return impCompra * 0.07;
+		else if (cant >= 11 && cant <= 15)
+			return impCompra * 0.09;
+		else
+			return impCompra * 0.11;				
+	}
+
+	private double calcIMporteCompra(int modelo, int cant) {
+		Double precio = getPrecio(modelo);
+		switch (modelo) {
+		case 0:
+			return cant * precio;
+		case 1:
+			return cant * precio;
+		case 2:
+			return cant * precio;
+		case 3:
+			return cant * precio;
+		default:
+			return cant * precio;
+		}
+		
+	}
+
+	private int getCantidad() {
+		return Integer.parseInt(txtCantidad.getText());
+	}
+	
+	private int getModelo() {
+		return cboModelo.getSelectedIndex();
+	}
+	
+	private double getPrecio(int modelo) {
+		switch (modelo) {
+		case 0: 
+			return FrmPrincipal.precio0;
+		case 1:
+			return FrmPrincipal.precio1;
+		case 2:
+			return FrmPrincipal.precio2;
+		case 3:
+			return FrmPrincipal.precio3;
+		default:
+			return FrmPrincipal.precio4;
+		}
+	}
+	
+	protected void actionPerformedCboModelo(ActionEvent e) {
+		mostrarResultadoCbo();
+	}
+	protected void actionPerformedBtnCerrar(ActionEvent e) {
+		System.exit(0);
+	}
+}

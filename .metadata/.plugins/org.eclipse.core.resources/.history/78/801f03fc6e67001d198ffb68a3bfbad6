@@ -1,0 +1,5 @@
+package sistemaVentasCocina;
+
+public class CocinaDto {
+	
+}

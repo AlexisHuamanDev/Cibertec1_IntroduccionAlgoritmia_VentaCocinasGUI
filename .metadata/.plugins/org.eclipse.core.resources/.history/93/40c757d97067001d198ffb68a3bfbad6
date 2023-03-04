@@ -1,0 +1,16 @@
+package sistemaVentasCocina;
+
+public class Cocina {
+
+	//TEMPORAL
+	Cocina nuevaCocina = new Cocina()
+	//
+	
+	String modelo;
+	Double precio;
+	Double profundidad;
+	Double ancho;
+	Double alto;
+	Integer quemadores;
+	
+}

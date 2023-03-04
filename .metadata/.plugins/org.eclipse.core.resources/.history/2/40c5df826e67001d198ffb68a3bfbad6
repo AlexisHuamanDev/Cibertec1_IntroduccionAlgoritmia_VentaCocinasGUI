@@ -1,0 +1,82 @@
+package sistemaVentasCocina;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class DlgListarCocina extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JTextArea txtS;
+	private JScrollPane scrollPane;
+	private JButton btnListar;
+	private JButton btnCerrar;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			DlgListarCocina dialog = new DlgListarCocina();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgListarCocina() {
+		setTitle("Listar Cocinas");
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(10, 11, 414, 205);
+		contentPanel.add(scrollPane);
+		
+		txtS = new JTextArea();
+		scrollPane.setViewportView(txtS);
+		
+		btnListar = new JButton("Listar");
+		btnListar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnListar(e);
+			}
+		});
+		btnListar.setBounds(236, 227, 89, 23);
+		contentPanel.add(btnListar);
+		
+		btnCerrar = new JButton("Cerrar");
+		btnCerrar.setBounds(118, 227, 89, 23);
+		contentPanel.add(btnCerrar);
+	}
+	protected void actionPerformedBtnListar(ActionEvent e) {
+		//Declaración de variables
+			String lista;
+			lista = getLista();
+	}
+
+	private String getLista() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+}

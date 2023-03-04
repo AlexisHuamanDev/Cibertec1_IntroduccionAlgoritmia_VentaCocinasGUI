@@ -1,0 +1,96 @@
+package sistemaVentasCocina;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class DlgGenerarReportes extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+
+	/**
+	 * Launch the application.
+	 */
+	
+	public static void main(String[] args) {
+		try {
+			DlgGenerarReportes dialog = new DlgGenerarReportes();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgGenerarReportes() {
+		setTitle("Generar Reportes");
+		setBounds(100, 100, 599, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		{
+			JLabel lblTipoReporte = new JLabel("Tipo de reporte");
+			lblTipoReporte.setBounds(10, 11, 106, 14);
+			contentPanel.add(lblTipoReporte);
+		}
+		{
+			JComboBox cboTipoReporte = new JComboBox();
+			cboTipoReporte.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionPerformedCboTipoReporte(e);
+				}
+			});
+			cboTipoReporte.setModel(new DefaultComboBoxModel(new String[] {"Ventas por modelo", "Ventas en relación a la venta óptima", "Precios en relación al precio promedio", "Promedios, menores y mayores"}));
+			cboTipoReporte.setBounds(129, 7, 295, 22);
+			contentPanel.add(cboTipoReporte);
+		}
+		{
+			JTextArea txtS = new JTextArea();
+			txtS.setBounds(10, 36, 563, 214);
+			contentPanel.add(txtS);
+		}
+		{
+			JButton btnCerrar = new JButton("Cerrar");
+			btnCerrar.setBounds(484, 7, 89, 23);
+			contentPanel.add(btnCerrar);
+		}
+	}
+
+	protected void actionPerformedCboTipoReporte(ActionEvent e) {
+		//Declaración de variables
+				int tipoReporte;
+		//Entrada de datos
+				tipoReporte = getTipoReporte();
+		//Proceso de cálculo 
+		//Salida de resultados
+				mostrarResultado(tipoReporte);
+	}
+
+	private void mostrarResultado(int tipoReporte) {
+		switch (tipoReporte) {
+		case 0: {
+			
+		}
+		}
+	}
+
+	private int getTipoReporte() {
+		return 0;
+	}
+		
+	}
+

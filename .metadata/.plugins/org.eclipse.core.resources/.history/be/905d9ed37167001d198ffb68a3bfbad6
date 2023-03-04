@@ -1,0 +1,118 @@
+package sistemaVentasCocina;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class DlgListarCocina extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JTextArea txtS;
+	private JScrollPane scrollPane;
+	private JButton btnListar;
+	private JButton btnCerrar;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			DlgListarCocina dialog = new DlgListarCocina();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgListarCocina() {
+		setTitle("Listar Cocinas");
+		setBounds(100, 100, 450, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scrollPane.setBounds(10, 11, 414, 205);
+		contentPanel.add(scrollPane);
+		
+		txtS = new JTextArea();
+		scrollPane.setViewportView(txtS);
+		
+		btnListar = new JButton("Listar");
+		btnListar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				actionPerformedBtnListar(e);
+			}
+		});
+		btnListar.setBounds(236, 227, 89, 23);
+		contentPanel.add(btnListar);
+		
+		btnCerrar = new JButton("Cerrar");
+		btnCerrar.setBounds(118, 227, 89, 23);
+		contentPanel.add(btnCerrar);
+	}
+	protected void actionPerformedBtnListar(ActionEvent e) {
+		//Declaración de variables
+			String lista;
+			getLista();
+	}
+
+	private void getLista() {
+		txtS.setText("LISTA DE COCINAS\n\n");
+		txtS.append("Modelo: "+ FrmPrincipal.modelo0);
+		txtS.append("Precio: "+ FrmPrincipal.precio0);
+		txtS.append("Profundidad: "+ FrmPrincipal.fondo0);
+		txtS.append("Ancho: "+ FrmPrincipal.ancho0);
+		txtS.append("Alto: "+ FrmPrincipal.alto0);
+		txtS.append("Quemadores: "+ FrmPrincipal.quemadores0);
+		
+		txtS.append("Modelo: "+ FrmPrincipal.modelo1);
+		txtS.append("Precio: "+ FrmPrincipal.precio1);
+		txtS.append("Profundidad: "+ FrmPrincipal.fondo1);
+		txtS.append("Ancho: "+ FrmPrincipal.ancho1);
+		txtS.append("Alto: "+ FrmPrincipal.alto1);
+		txtS.append("Quemadores: "+ FrmPrincipal.quemadores1);
+		
+		txtS.append("Modelo: "+ FrmPrincipal.modelo2);
+		txtS.append("Precio: "+ FrmPrincipal.precio2);
+		txtS.append("Profundidad: "+ FrmPrincipal.fondo2);
+		txtS.append("Ancho: "+ FrmPrincipal.ancho2);
+		txtS.append("Alto: "+ FrmPrincipal.alto2);
+		txtS.append("Quemadores: "+ FrmPrincipal.quemadores2);
+		
+		txtS.append("Modelo: "+ FrmPrincipal.modelo3);
+		txtS.append("Precio: "+ FrmPrincipal.precio3);
+		txtS.append("Profundidad: "+ FrmPrincipal.fondo3);
+		txtS.append("Ancho: "+ FrmPrincipal.ancho3);
+		txtS.append("Alto: "+ FrmPrincipal.alto3);
+		txtS.append("Quemadores: "+ FrmPrincipal.quemadores3);
+		
+		txtS.append("Modelo: "+ FrmPrincipal.modelo4);
+		txtS.append("Precio: "+ FrmPrincipal.precio4);
+		txtS.append("Profundidad: "+ FrmPrincipal.fondo4);
+		txtS.append("Ancho: "+ FrmPrincipal.ancho4);
+		txtS.append("Alto: "+ FrmPrincipal.alto4);
+		txtS.append("Quemadores: "+ FrmPrincipal.quemadores4);
+
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+}

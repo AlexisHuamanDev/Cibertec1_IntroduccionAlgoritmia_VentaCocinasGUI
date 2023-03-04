@@ -1,0 +1,168 @@
+package sistemaVentasCocina;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class DlgGenerarReportes extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JComboBox<?> cboTipoReporte;
+	private JTextArea txtS;
+
+	/**
+	 * Launch the application.
+	 */
+
+		
+	public static void main(String[] args) {
+		try {
+			DlgGenerarReportes dialog = new DlgGenerarReportes();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgGenerarReportes() {
+		setTitle("Generar Reportes");
+		setBounds(100, 100, 599, 300);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		{
+			JLabel lblTipoReporte = new JLabel("Tipo de reporte");
+			lblTipoReporte.setBounds(10, 11, 106, 14);
+			contentPanel.add(lblTipoReporte);
+		}
+		{
+			cboTipoReporte = new JComboBox();
+			cboTipoReporte.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionPerformedCboTipoReporte(e);
+				}
+			});
+			cboTipoReporte.setModel(new DefaultComboBoxModel(new String[] {"Ventas por modelo", "Ventas en relación a la venta óptima", "Precios en relación al precio promedio", "Promedios, menores y mayores"}));
+			cboTipoReporte.setBounds(129, 7, 295, 22);
+			contentPanel.add(cboTipoReporte);
+		}
+		{
+			txtS = new JTextArea();
+			txtS.setBounds(10, 36, 563, 214);
+			contentPanel.add(txtS);
+		}
+		{
+			JButton btnCerrar = new JButton("Cerrar");
+			btnCerrar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionPerformedBtnCerrar(e);
+				}
+			});
+			btnCerrar.setBounds(484, 7, 89, 23);
+			contentPanel.add(btnCerrar);
+			
+			//Obtener tipo reporte
+			obtenerTipoReporte();
+		}
+	}
+
+	private void obtenerTipoReporte() {
+		int reporte = cboTipoReporte.getSelectedIndex();
+		
+		switch (reporte) {
+		case 0 : 
+			ventasPorModelo(); 
+		case 1 : 
+			//ventasOptimas(); 
+		case 2 : 
+			//precioPromedio();		
+		default: 
+			//menoresMayores();
+		}
+	}
+	
+	private void ventasPorModelo() {
+		// TODO Auto-generated method stub
+		txtS.setText("Ventas Por Modelo \n\n");
+		imprimir("Modelo			:" + FrmPrincipal.modelo0);
+		imprimir("Cantidad de ventas		:" + FrmPrincipal.cantVentas0);
+		imprimir("Cantidad de unidades vendidas	:" + FrmPrincipal.cantUnidadesVendidas0);
+		imprimir("Importe total vendido		:" + FrmPrincipal.precioTotalVentas0);
+		imprimir("Aporte a la cuota diaria		:" + FrmPrincipal.cantVentas0 +"\n");
+		
+		imprimir("Modelo			:" + FrmPrincipal.modelo1);
+		imprimir("Cantidad de ventas		:" + FrmPrincipal.cantVentas1);
+		imprimir("Cantidad de unidades vendidas	:" + FrmPrincipal.cantUnidadesVendidas1);
+		imprimir("Importe total vendido		:" + FrmPrincipal.precioTotalVentas1);
+		imprimir("Aporte a la cuota diaria		:" + FrmPrincipal.cantVentas1 +"\n");
+		
+		imprimir("Modelo			:" + FrmPrincipal.modelo2);
+		imprimir("Cantidad de ventas		:" + FrmPrincipal.cantVentas2);
+		imprimir("Cantidad de unidades vendidas	:" + FrmPrincipal.cantUnidadesVendidas2);
+		imprimir("Importe total vendido		:" + FrmPrincipal.precioTotalVentas2);
+		imprimir("Aporte a la cuota diaria		:" + FrmPrincipal.cantVentas2 +"\n");
+		
+		imprimir("Modelo			:" + FrmPrincipal.modelo3);
+		imprimir("Cantidad de ventas		:" + FrmPrincipal.cantVentas3);
+		imprimir("Cantidad de unidades vendidas	:" + FrmPrincipal.cantUnidadesVendidas3);
+		imprimir("Importe total vendido		:" + FrmPrincipal.precioTotalVentas3);
+		imprimir("Aporte a la cuota diaria		:" + FrmPrincipal.cantVentas3 +"\n");
+		
+		imprimir("Modelo			:" + FrmPrincipal.modelo4);
+		imprimir("Cantidad de ventas		:" + FrmPrincipal.cantVentas4);
+		imprimir("Cantidad de unidades vendidas	:" + FrmPrincipal.cantUnidadesVendidas4);
+		imprimir("Importe total vendido		:" + FrmPrincipal.precioTotalVentas4);
+		imprimir("Aporte a la cuota diaria		:" + FrmPrincipal.cantVentas4 +"\n");
+		
+	}
+
+	private void imprimir(String cad) {
+		txtS.append(cad + "\n");
+	}
+	
+	protected void actionPerformedCboTipoReporte(ActionEvent e) {
+		//Declaración de variables
+				int tipoReporte;
+		//Entrada de datos
+				tipoReporte = getTipoReporte();
+		//Salida de resultados
+				mostrarResultado(tipoReporte);
+	}
+
+		  
+	private void mostrarResultado(int tipoReporte) {
+		
+		switch(tipoReporte) {
+		case 0 ://Ventas por modelo
+			
+			
+		
+			
+		}		
+	
+	}
+	private int getTipoReporte() {
+		return cboTipoReporte.getSelectedIndex();
+	}		
+		
+	protected void actionPerformedBtnCerrar(ActionEvent e) {
+		dispose();
+	}
+}
+		
+

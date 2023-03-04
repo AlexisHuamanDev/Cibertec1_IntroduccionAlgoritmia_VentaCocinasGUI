@@ -1,0 +1,157 @@
+package sistemaVentasCocina;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class DlgConfigurarDescuentos extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JTextField txtUnidades1;
+	private JTextField txtUnidades2;
+	private JTextField txtUnidades3;
+	private JTextField txtUnidades4;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			DlgConfigurarDescuentos dialog = new DlgConfigurarDescuentos();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgConfigurarDescuentos() {
+		setTitle("Configurar porcentajes de descuentos");
+		setBounds(100, 100, 450, 194);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		{
+			JLabel lblUnidades1 = new JLabel("1 a 5 unidades");
+			lblUnidades1.setBounds(10, 11, 70, 14);
+			contentPanel.add(lblUnidades1);
+		}
+		{
+			txtUnidades1 = new JTextField();
+			txtUnidades1.setBounds(122, 8, 100, 20);
+			contentPanel.add(txtUnidades1);
+			txtUnidades1.setColumns(10);
+		}
+		{
+			JLabel lblUnidades2 = new JLabel("6 a 10 unidades");
+			lblUnidades2.setBounds(10, 48, 83, 14);
+			contentPanel.add(lblUnidades2);
+		}
+		{
+			txtUnidades2 = new JTextField();
+			txtUnidades2.setBounds(122, 45, 100, 20);
+			contentPanel.add(txtUnidades2);
+			txtUnidades2.setColumns(10);
+		}
+		{
+			JLabel lblUnidades3 = new JLabel("11 a 15 unidades");
+			lblUnidades3.setBounds(10, 86, 83, 14);
+			contentPanel.add(lblUnidades3);
+		}
+		{
+			txtUnidades3 = new JTextField();
+			txtUnidades3.setBounds(122, 83, 100, 20);
+			contentPanel.add(txtUnidades3);
+			txtUnidades3.setColumns(10);
+		}
+		{
+			JLabel lblUnidades4 = new JLabel("Más de 15 unidades");
+			lblUnidades4.setBounds(10, 123, 102, 14);
+			contentPanel.add(lblUnidades4);
+		}
+		{
+			txtUnidades4 = new JTextField();
+			txtUnidades4.setBounds(122, 120, 100, 20);
+			contentPanel.add(txtUnidades4);
+			txtUnidades4.setColumns(10);
+		}
+		{
+			JLabel lblU1 = new JLabel("%");
+			lblU1.setBounds(232, 11, 46, 14);
+			contentPanel.add(lblU1);
+		}
+		{
+			JLabel lblU2 = new JLabel("%");
+			lblU2.setBounds(232, 48, 46, 14);
+			contentPanel.add(lblU2);
+		}
+		{
+			JLabel lblU3 = new JLabel("%");
+			lblU3.setBounds(232, 86, 46, 14);
+			contentPanel.add(lblU3);
+		}
+		{
+			JLabel lblU4 = new JLabel("%");
+			lblU4.setBounds(232, 123, 46, 14);
+			contentPanel.add(lblU4);
+		}
+		{
+			JButton btnAceptar = new JButton("Aceptar");
+			btnAceptar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionPerformedBtnAceptar(e);
+				}
+			});
+			btnAceptar.setBounds(318, 11, 89, 23);
+			contentPanel.add(btnAceptar);
+		}
+		{
+			JButton btnCancelar = new JButton("Cancelar");
+			btnCancelar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionPerformedBtnCancelar(e);
+				}
+			});
+			btnCancelar.setBounds(318, 44, 89, 23);
+			contentPanel.add(btnCancelar);
+		}
+		
+		cargarDatos();
+	}
+
+	private void cargarDatos() {
+		txtUnidades1.setText(FrmPrincipal.porcentaje1 + "");
+		txtUnidades2.setText(FrmPrincipal.porcentaje2 + "");
+		txtUnidades3.setText(FrmPrincipal.porcentaje3 + "");
+		txtUnidades4.setText(FrmPrincipal.porcentaje4 + "");
+	}
+
+	protected void actionPerformedBtnAceptar(ActionEvent e) {
+
+		int opcion = JOptionPane.showConfirmDialog(this, "¿Esta seguro de realizar los cambios?", "Sistema", JOptionPane.YES_NO_OPTION);
+		System.out.println("Opcion -> " + opcion);
+		
+		if(opcion == 0) {
+			FrmPrincipal.porcentaje1 = Double.parseDouble(txtUnidades1.getText());
+			FrmPrincipal.porcentaje2 = Double.parseDouble(txtUnidades2.getText());
+			FrmPrincipal.porcentaje3 = Double.parseDouble(txtUnidades3.getText());
+			FrmPrincipal.porcentaje4 = Double.parseDouble(txtUnidades4.getText());
+		}
+	}
+	protected void actionPerformedBtnCancelar(ActionEvent e) {
+		dispose();
+	}
+}

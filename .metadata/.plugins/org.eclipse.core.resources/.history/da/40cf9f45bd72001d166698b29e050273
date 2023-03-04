@@ -1,0 +1,128 @@
+package sistemaVentasCocina;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+@SuppressWarnings("serial")
+public class DlgConfigurarObsequios extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JTextField txtU1;
+	private JTextField txtU2;
+	private JTextField txtU3;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			DlgConfigurarObsequios dialog = new DlgConfigurarObsequios();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgConfigurarObsequios() {
+		setTitle("Configurar obsequios");
+		setBounds(100, 100, 450, 181);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		{
+			JLabel lblU1 = new JLabel("1 unidad");
+			lblU1.setBounds(10, 24, 92, 14);
+			contentPanel.add(lblU1);
+		}
+		{
+			txtU1 = new JTextField();
+			txtU1.setBounds(155, 21, 107, 20);
+			contentPanel.add(txtU1);
+			txtU1.setColumns(10);
+		}
+		{
+			JLabel lblU2 = new JLabel("2 a 5 unidades");
+			lblU2.setBounds(10, 59, 92, 14);
+			contentPanel.add(lblU2);
+		}
+		{
+			txtU2 = new JTextField();
+			txtU2.setBounds(155, 56, 107, 20);
+			contentPanel.add(txtU2);
+			txtU2.setColumns(10);
+		}
+		{
+			JLabel lblU3 = new JLabel("6 a más unidades");
+			lblU3.setBounds(10, 99, 120, 14);
+			contentPanel.add(lblU3);
+		}
+		{
+			txtU3 = new JTextField();
+			txtU3.setBounds(155, 96, 107, 20);
+			contentPanel.add(txtU3);
+			txtU3.setColumns(10);
+		}
+		{
+			JButton btnAceptar = new JButton("Aceptar");
+			btnAceptar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionPerformedBtnAceptar(e);
+				}
+			});
+			btnAceptar.setBounds(314, 20, 89, 23);
+			contentPanel.add(btnAceptar);
+		}
+		{
+			JButton btnCancelar = new JButton("Cancelar");
+			btnCancelar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					actionPerformedBtnCancelar(e);
+				}
+			});
+			btnCancelar.setBounds(314, 54, 89, 23);
+			contentPanel.add(btnCancelar);
+		}
+		//Cargar datos
+		cargarDatos();
+	}
+	
+
+		private void cargarDatos() {
+			txtU1.setText(FrmPrincipal.obsequio1 + "");
+			txtU2.setText(FrmPrincipal.obsequio2 + "");
+			txtU3.setText(FrmPrincipal.obsequio3 + "");
+		}
+		
+		protected void actionPerformedBtnAceptar(ActionEvent e) {
+		//Declaración de variables
+			int opcion;
+			
+			opcion = JOptionPane.showConfirmDialog(this, "¿Esta seguro de realizar los cambios?", "Sistema", JOptionPane.YES_NO_OPTION);
+			System.out.println("Opcion -> " + opcion);
+			dispose();
+			
+			
+			if(opcion == 0) {
+				FrmPrincipal.obsequio1 = txtU1.getText();
+				FrmPrincipal.obsequio2 = txtU2.getText();
+				FrmPrincipal.obsequio3 = txtU3.getText();
+			}		
+	}
+	protected void actionPerformedBtnCancelar(ActionEvent e) {
+			dispose();
+	}
+}

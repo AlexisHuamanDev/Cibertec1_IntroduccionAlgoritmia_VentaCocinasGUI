@@ -1,0 +1,22 @@
+package sistemaVentasCocina;
+
+public class Cocina {
+
+	String modelo;
+	Double precio;
+	Double profundidad;
+	Double ancho;
+	Double alto;
+	Integer quemadores;
+	
+	public Cocina(String modelo, Double precio, Double profundidad, Double ancho, Double alto, Integer quemadores){
+		this.modelo = modelo;
+		this.precio = precio;
+		this.profundidad = profundidad;
+		this.ancho = ancho;
+		this.alto = alto;
+		this.quemadores = quemadores;
+	}
+
+	
+}

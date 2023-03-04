@@ -1,0 +1,23 @@
+package sistemaVentasCocina;
+
+import java.text.DecimalFormat;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
+
+public class Adicionales {
+	static JTextArea txtS = new JTextArea();
+
+	//Controlar decimales
+	public static DecimalFormat df = new DecimalFormat("0.00");
+
+	//imprimir
+	public static void imprimir(String cad) {
+		txtS.append( cad + "\n");
+	}
+		
+
+	//método mensaje para mostrar cuadro de diálogo
+	public static void mensaje(String msj) {
+		JOptionPane.showMessageDialog(null, msj, "Error!", 0);
+	}
+}

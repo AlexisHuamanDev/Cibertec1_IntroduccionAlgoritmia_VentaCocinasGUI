@@ -1,0 +1,16 @@
+package utils;
+
+
+
+public class Adicionales {
+	
+	static JTextArea txtS = new JTextArea();
+
+	//Controlar decimales
+	public static DecimalFormat df = new DecimalFormat("0.00");
+	
+	//método mensaje para mostrar cuadro de diálogo
+	public static void mensaje(String msj) {
+		JOptionPane.showMessageDialog(null, msj, "Error!", 0);
+	}
+}

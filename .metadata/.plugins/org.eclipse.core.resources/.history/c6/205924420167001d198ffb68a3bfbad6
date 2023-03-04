@@ -1,0 +1,114 @@
+package sistemaVentasCocina;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
+
+public class DlgConsultarCocina extends JDialog {
+
+	private final JPanel contentPanel = new JPanel();
+	private JLabel lblModelo;
+	private JComboBox cboModelo;
+	private JLabel lblPrecio;
+	private JTextField txtPrecio;
+	private JLabel lblAncho;
+	private JTextField txtAncho;
+	private JLabel lblAlto;
+	private JTextField txtAlto;
+	private JLabel lblFondo;
+	private JTextField txtFondo;
+	private JLabel lblQuemadores;
+	private JTextField txtQuemadores;
+	private JButton btnCerrar;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		try {
+			DlgConsultarCocina dialog = new DlgConsultarCocina();
+			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+			dialog.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * Create the dialog.
+	 */
+	public DlgConsultarCocina() {
+		setTitle("Consultar cocina");
+		setBounds(100, 100, 450, 263);
+		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		contentPanel.setLayout(null);
+		
+		lblModelo = new JLabel("Modelo");
+		lblModelo.setBounds(10, 30, 46, 14);
+		contentPanel.add(lblModelo);
+		
+		cboModelo = new JComboBox();
+		cboModelo.setModel(new DefaultComboBoxModel(new String[] {"Mabe EMP6120PG0", "Indurama Parma", "Sole COSOL027", "Coldex CX602", "Reco Dakota"}));
+		cboModelo.setBounds(86, 26, 131, 22);
+		contentPanel.add(cboModelo);
+		
+		lblPrecio = new JLabel("Precio (S/)");
+		lblPrecio.setBounds(10, 62, 66, 14);
+		contentPanel.add(lblPrecio);
+		
+		txtPrecio = new JTextField();
+		txtPrecio.setBounds(87, 59, 131, 20);
+		contentPanel.add(txtPrecio);
+		txtPrecio.setColumns(10);
+		
+		lblAncho = new JLabel("Ancho (cm)");
+		lblAncho.setBounds(10, 93, 66, 14);
+		contentPanel.add(lblAncho);
+		
+		txtAncho = new JTextField();
+		txtAncho.setBounds(87, 90, 131, 20);
+		contentPanel.add(txtAncho);
+		txtAncho.setColumns(10);
+		
+		lblAlto = new JLabel("Alto (cm)");
+		lblAlto.setBounds(10, 124, 58, 14);
+		contentPanel.add(lblAlto);
+		
+		txtAlto = new JTextField();
+		txtAlto.setBounds(87, 121, 131, 20);
+		contentPanel.add(txtAlto);
+		txtAlto.setColumns(10);
+		
+		lblFondo = new JLabel("Fondo (cm)");
+		lblFondo.setBounds(10, 155, 66, 14);
+		contentPanel.add(lblFondo);
+		
+		txtFondo = new JTextField();
+		txtFondo.setBounds(87, 152, 131, 20);
+		contentPanel.add(txtFondo);
+		txtFondo.setColumns(10);
+		
+		lblQuemadores = new JLabel("Quemadores");
+		lblQuemadores.setBounds(10, 186, 66, 14);
+		contentPanel.add(lblQuemadores);
+		
+		txtQuemadores = new JTextField();
+		txtQuemadores.setBounds(87, 183, 131, 20);
+		contentPanel.add(txtQuemadores);
+		txtQuemadores.setColumns(10);
+		
+		btnCerrar = new JButton("Cerrar");
+		btnCerrar.setBounds(324, 26, 89, 23);
+		contentPanel.add(btnCerrar);
+	}
+}
